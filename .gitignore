@@ -346,3 +346,7 @@ healthchecksdb
 #AppZJOHOTEL/AppZJOHOTEL.WebAPI/Properties/launchSettings.json
 
 #appsettings.Development.json
+AppZJOHotel.WEBAPI/obj/Debug/net6.0/AppZJOHotel.WEBAPI.csproj.FileListAbsolute.txt
+*.json
+*.vsidx
+*.json

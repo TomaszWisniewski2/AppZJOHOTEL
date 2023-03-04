@@ -22,6 +22,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AppZJOHotel.DAL\AppZJOHotel.DAL.csproj" />
+	<ProjectReference Include="..\AppZJOHotel.Common\AppZJOHotel.Common.csproj" />
+    <ProjectReference Include="..\AppZJOHotel.Services\AppZJOHotel.Services.csproj" />
+    <ProjectReference Include="..\AppZJOHotel.Types\AppZJOHotel.Types.csproj" />
   </ItemGroup>
 
   <ItemGroup>
