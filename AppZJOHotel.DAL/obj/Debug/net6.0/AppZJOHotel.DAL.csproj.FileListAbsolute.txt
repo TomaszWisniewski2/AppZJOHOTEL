@@ -1,0 +1,12 @@
+C:\Users\ajaniak\source\repos\AppZJOHOTEL\AppZJOHotel.DAL\bin\Debug\net6.0\AppZJOHotel.DAL.deps.json
+C:\Users\ajaniak\source\repos\AppZJOHOTEL\AppZJOHotel.DAL\bin\Debug\net6.0\AppZJOHotel.DAL.dll
+C:\Users\ajaniak\source\repos\AppZJOHOTEL\AppZJOHotel.DAL\bin\Debug\net6.0\AppZJOHotel.DAL.pdb
+C:\Users\ajaniak\source\repos\AppZJOHOTEL\AppZJOHotel.DAL\obj\Debug\net6.0\AppZJOHotel.DAL.csproj.AssemblyReference.cache
+C:\Users\ajaniak\source\repos\AppZJOHOTEL\AppZJOHotel.DAL\obj\Debug\net6.0\AppZJOHotel.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ajaniak\source\repos\AppZJOHOTEL\AppZJOHotel.DAL\obj\Debug\net6.0\AppZJOHotel.DAL.AssemblyInfoInputs.cache
+C:\Users\ajaniak\source\repos\AppZJOHOTEL\AppZJOHotel.DAL\obj\Debug\net6.0\AppZJOHotel.DAL.AssemblyInfo.cs
+C:\Users\ajaniak\source\repos\AppZJOHOTEL\AppZJOHotel.DAL\obj\Debug\net6.0\AppZJOHotel.DAL.csproj.CoreCompileInputs.cache
+C:\Users\ajaniak\source\repos\AppZJOHOTEL\AppZJOHotel.DAL\obj\Debug\net6.0\AppZJOHotel.DAL.dll
+C:\Users\ajaniak\source\repos\AppZJOHOTEL\AppZJOHotel.DAL\obj\Debug\net6.0\refint\AppZJOHotel.DAL.dll
+C:\Users\ajaniak\source\repos\AppZJOHOTEL\AppZJOHotel.DAL\obj\Debug\net6.0\AppZJOHotel.DAL.pdb
+C:\Users\ajaniak\source\repos\AppZJOHOTEL\AppZJOHotel.DAL\obj\Debug\net6.0\ref\AppZJOHotel.DAL.dll

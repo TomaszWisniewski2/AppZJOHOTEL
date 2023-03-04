@@ -1,0 +1,12 @@
+C:\Users\ajaniak\source\repos\AppZJOHOTEL\AppZJOHotel.Services\bin\Debug\net6.0\AppZJOHotel.Services.deps.json
+C:\Users\ajaniak\source\repos\AppZJOHOTEL\AppZJOHotel.Services\bin\Debug\net6.0\AppZJOHotel.Services.dll
+C:\Users\ajaniak\source\repos\AppZJOHOTEL\AppZJOHotel.Services\bin\Debug\net6.0\AppZJOHotel.Services.pdb
+C:\Users\ajaniak\source\repos\AppZJOHOTEL\AppZJOHotel.Services\obj\Debug\net6.0\AppZJOHotel.Services.csproj.AssemblyReference.cache
+C:\Users\ajaniak\source\repos\AppZJOHOTEL\AppZJOHotel.Services\obj\Debug\net6.0\AppZJOHotel.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ajaniak\source\repos\AppZJOHOTEL\AppZJOHotel.Services\obj\Debug\net6.0\AppZJOHotel.Services.AssemblyInfoInputs.cache
+C:\Users\ajaniak\source\repos\AppZJOHOTEL\AppZJOHotel.Services\obj\Debug\net6.0\AppZJOHotel.Services.AssemblyInfo.cs
+C:\Users\ajaniak\source\repos\AppZJOHOTEL\AppZJOHotel.Services\obj\Debug\net6.0\AppZJOHotel.Services.csproj.CoreCompileInputs.cache
+C:\Users\ajaniak\source\repos\AppZJOHOTEL\AppZJOHotel.Services\obj\Debug\net6.0\AppZJOHotel.Services.dll
+C:\Users\ajaniak\source\repos\AppZJOHOTEL\AppZJOHotel.Services\obj\Debug\net6.0\refint\AppZJOHotel.Services.dll
+C:\Users\ajaniak\source\repos\AppZJOHOTEL\AppZJOHotel.Services\obj\Debug\net6.0\AppZJOHotel.Services.pdb
+C:\Users\ajaniak\source\repos\AppZJOHOTEL\AppZJOHotel.Services\obj\Debug\net6.0\ref\AppZJOHotel.Services.dll
