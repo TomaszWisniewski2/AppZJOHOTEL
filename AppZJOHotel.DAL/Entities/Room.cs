@@ -12,13 +12,13 @@ namespace AppZJOHotel.DAL.Entities
         public int RoomNumber { get; set; }
         public float RoomPrice { get; set; }
         public int RoomCapacity { get; set; }
-        public string RoomPhoto { get; set; }
+        public string? RoomPhoto { get; set; }
         public bool RoomStatus { get; set; }//zajęty nie zajęy
 
         [ForeignKey(nameof(RoomType))]
         public int RoomTypeId { get; set; }
-        public RoomType RoomType { get; set; }
+        public RoomType? RoomType { get; set; }
 
-        public ICollection<Booking> Booking { get; set; }
+        public ICollection<Booking>? Booking { get; set; }
     }
 }

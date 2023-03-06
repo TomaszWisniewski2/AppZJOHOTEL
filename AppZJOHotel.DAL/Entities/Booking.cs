@@ -1,10 +1,5 @@
-﻿using AppZJOHotel.Common.Ennums;
-using System;
-using System.Collections.Generic;
+﻿using AppZJOHotel.Common.Enums;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AppZJOHotel.DAL.Entities
 {
@@ -17,11 +12,11 @@ namespace AppZJOHotel.DAL.Entities
 
         [ForeignKey(nameof(Guest))]
         public int GuestId { get; set; }
-        public Guest Guest { get; set; }
+        public virtual Guest? Guest { get; set; }
 
         [ForeignKey(nameof(Room))]
         public int RoomId { get; set; }
-        public Room Room { get; set; }
+        public Room? Room { get; set; }
 
         //[ForeignKey(nameof(PaymentType))]
         //public int PaymentTypeId { get; set; }

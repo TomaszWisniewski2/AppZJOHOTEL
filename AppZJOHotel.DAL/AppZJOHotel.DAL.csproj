@@ -15,5 +15,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.3" />
   </ItemGroup>
+	<ItemGroup>
+	<ProjectReference Include="..\AppZJOHotel.Common\AppZJOHotel.Common.csproj" />
+	<ProjectReference Include="..\AppZJOHotel.Types\AppZJOHotel.Types.csproj" />
+	</ItemGroup>
 
 </Project>

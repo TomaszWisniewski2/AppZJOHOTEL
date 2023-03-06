@@ -373,3 +373,7 @@ AppZJOHotel.Services/obj/project.assets.json
 AppZJOHotel.WEBAPI/.vs/AppZJOHotel.WEBAPI/DesignTimeBuild/.dtbcache.v2
 AppZJOHotel.WEBAPI/.vs/AppZJOHotel.WEBAPI/v17/.futdcache.v2
 AppZJOHotel.WEBAPI/bin/Debug/net6.0/AppZJOHotel.WEBAPI.deps.json
+*.vsidx
+*.json
+*.txt
+AppZJOHotel.DAL/obj/project.assets.json
