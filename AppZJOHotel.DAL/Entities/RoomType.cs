@@ -8,7 +8,7 @@ namespace AppZJOHotel.DAL.Entities
 {
     public class RoomType: Entity
     {
-        public string Type{ get; set; }
+        public string Type { get; set; }
         public ICollection<Room> Room { get; set; }
     }
 }

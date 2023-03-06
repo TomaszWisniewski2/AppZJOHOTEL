@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppZJOHotel.Common.Ennums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace AppZJOHotel.DAL.Entities
         public DateTime BookingFrom { get; set; }
         public DateTime BookingTo { get; set; }
         public double ToPay { get; set; }//Do zapłaty
+        public PaymentType PaymentType { get; set; }
 
         [ForeignKey(nameof(Guest))]
         public int GuestId { get; set; }
@@ -21,8 +23,8 @@ namespace AppZJOHotel.DAL.Entities
         public int RoomId { get; set; }
         public Room Room { get; set; }
 
-        [ForeignKey(nameof(PaymentType))]
-        public int PaymentTypeId { get; set; }
-        public PaymentType PaymentType { get; set; }
+        //[ForeignKey(nameof(PaymentType))]
+        //public int PaymentTypeId { get; set; }
+        //public PaymentType PaymentType { get; set; }
     }
 }

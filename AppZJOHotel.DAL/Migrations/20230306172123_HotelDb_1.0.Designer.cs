@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppZJOHotel.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230306144721_HotelDb_1.0")]
+    [Migration("20230306172123_HotelDb_1.0")]
     partial class HotelDb_10
     {
         /// <inheritdoc />
@@ -42,7 +42,7 @@ namespace AppZJOHotel.DAL.Migrations
                     b.Property<int>("GuestId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PaymentTypeId")
+                    b.Property<int>("PaymentType")
                         .HasColumnType("int");
 
                     b.Property<int>("RoomId")
@@ -54,8 +54,6 @@ namespace AppZJOHotel.DAL.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("GuestId");
-
-                    b.HasIndex("PaymentTypeId");
 
                     b.HasIndex("RoomId");
 
@@ -74,9 +72,6 @@ namespace AppZJOHotel.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("GuestRoleId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -85,49 +80,16 @@ namespace AppZJOHotel.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
                     b.Property<string>("Surname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GuestRoleId");
-
                     b.ToTable("Guest");
-                });
-
-            modelBuilder.Entity("AppZJOHotel.DAL.Entities.GuestRole", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("GuestRole");
-                });
-
-            modelBuilder.Entity("AppZJOHotel.DAL.Entities.PaymentType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PaymentType");
                 });
 
             modelBuilder.Entity("AppZJOHotel.DAL.Entities.Room", b =>
@@ -148,39 +110,20 @@ namespace AppZJOHotel.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("RoomPrice")
-                        .HasColumnType("float");
+                    b.Property<float>("RoomPrice")
+                        .HasColumnType("real");
 
-                    b.Property<int>("RoomStatusId")
-                        .HasColumnType("int");
+                    b.Property<bool>("RoomStatus")
+                        .HasColumnType("bit");
 
                     b.Property<int>("RoomTypeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RoomStatusId");
-
                     b.HasIndex("RoomTypeId");
 
                     b.ToTable("Room");
-                });
-
-            modelBuilder.Entity("AppZJOHotel.DAL.Entities.RoomStatus", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("RoomStatus");
                 });
 
             modelBuilder.Entity("AppZJOHotel.DAL.Entities.RoomType", b =>
@@ -208,12 +151,6 @@ namespace AppZJOHotel.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AppZJOHotel.DAL.Entities.PaymentType", "PaymentType")
-                        .WithMany("Booking")
-                        .HasForeignKey("PaymentTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("AppZJOHotel.DAL.Entities.Room", "Room")
                         .WithMany("Booking")
                         .HasForeignKey("RoomId")
@@ -222,37 +159,16 @@ namespace AppZJOHotel.DAL.Migrations
 
                     b.Navigation("Guest");
 
-                    b.Navigation("PaymentType");
-
                     b.Navigation("Room");
-                });
-
-            modelBuilder.Entity("AppZJOHotel.DAL.Entities.Guest", b =>
-                {
-                    b.HasOne("AppZJOHotel.DAL.Entities.GuestRole", "GuestRole")
-                        .WithMany("Guest")
-                        .HasForeignKey("GuestRoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("GuestRole");
                 });
 
             modelBuilder.Entity("AppZJOHotel.DAL.Entities.Room", b =>
                 {
-                    b.HasOne("AppZJOHotel.DAL.Entities.RoomStatus", "RoomStatus")
-                        .WithMany("Room")
-                        .HasForeignKey("RoomStatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("AppZJOHotel.DAL.Entities.RoomType", "RoomType")
                         .WithMany("Room")
                         .HasForeignKey("RoomTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("RoomStatus");
 
                     b.Navigation("RoomType");
                 });
@@ -262,24 +178,9 @@ namespace AppZJOHotel.DAL.Migrations
                     b.Navigation("Booking");
                 });
 
-            modelBuilder.Entity("AppZJOHotel.DAL.Entities.GuestRole", b =>
-                {
-                    b.Navigation("Guest");
-                });
-
-            modelBuilder.Entity("AppZJOHotel.DAL.Entities.PaymentType", b =>
-                {
-                    b.Navigation("Booking");
-                });
-
             modelBuilder.Entity("AppZJOHotel.DAL.Entities.Room", b =>
                 {
                     b.Navigation("Booking");
-                });
-
-            modelBuilder.Entity("AppZJOHotel.DAL.Entities.RoomStatus", b =>
-                {
-                    b.Navigation("Room");
                 });
 
             modelBuilder.Entity("AppZJOHotel.DAL.Entities.RoomType", b =>
