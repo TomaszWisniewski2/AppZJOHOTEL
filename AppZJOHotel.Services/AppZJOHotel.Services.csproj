@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="7.0.0" />
+  </ItemGroup>
+	  <ItemGroup>
+    <ProjectReference Include="..\AppZJOHotel.DAL\AppZJOHotel.DAL.csproj" />
+    <ProjectReference Include="..\AppZJOHotel.Types\AppZJOHotel.Types.csproj" />
+  </ItemGroup>
+
 </Project>
