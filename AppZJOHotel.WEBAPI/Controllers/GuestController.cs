@@ -1,4 +1,5 @@
-﻿using AppZJOHotel.Services.GuestService;
+﻿using AppZJOHotel.DAL.Entities;
+using AppZJOHotel.Services.GuestService;
 using AppZJOHotel.Types;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,5 +16,10 @@ namespace AppZJOHotel.WEBAPI.Controllers
         [HttpGet]
         public Task<List<GuestDTO?>> List() => guestService.ListGuests();
 
+        [HttpPost]
+        public Task<GuestDTO> Register([FromBody] GuestDTO guestDTO) => guestService.RegisterGuest(guestDTO);
+
+        [HttpPut]
+        public Task<GuestDTO?> EditGuest([FromBody] GuestDTO guestDTO) => guestService.EditGuest(guestDTO);
     }
 }

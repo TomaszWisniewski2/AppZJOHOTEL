@@ -9,5 +9,7 @@ namespace AppZJOHotel.Services.GuestService
     public interface IGuestService
     {
         Task<List<GuestDTO?>> ListGuests();
+        Task<GuestDTO> RegisterGuest(GuestDTO guest);
+        Task<GuestDTO?> EditGuest(GuestDTO dto);
     }
 }
