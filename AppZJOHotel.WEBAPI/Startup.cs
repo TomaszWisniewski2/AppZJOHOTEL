@@ -1,59 +1,97 @@
-﻿using AppZJOHotel.WEBAPI.Db_Access;
+﻿using Autofac.Extensions.DependencyInjection;
 using Autofac;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using AppZJOHotel.Services;
-
-namespace AppZJOHotel.WEBAPI;
+using AppZJOHotel.Services.GuestService;
+using Microsoft.EntityFrameworkCore;
+using System.Configuration;
+using AppZJOHotel.WEBAPI.Db_Access;
+using System.Reflection;
 
 public class Startup
 {
-    private static readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
     public Startup(IConfiguration configuration)
     {
-        Configuration = configuration;
-
+        // In ASP.NET Core 3.x, using `Host.CreateDefaultBuilder` (as in the preceding Program.cs snippet) will
+        // set up some configuration for you based on your appsettings.json and environment variables. See "Remarks" at
+        // https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.host.createdefaultbuilder for details.
+        this.Configuration = configuration;
     }
-    public IConfiguration Configuration { get; }
+
+    public IConfiguration Configuration { get; private set; }
+
+    public ILifetimeScope AutofacContainer { get; private set; }
+
+    // ConfigureServices is where you register dependencies. This gets
+    // called by the runtime before the ConfigureContainer method, below.
     public void ConfigureServices(IServiceCollection services)
     {
-        ConfigureForwardedHeaders(services);
-        //ConfigureDatabase(services);
-        //ConfigureOpenApiServices(services);
+        // Add services to the collection. Don't build or return
+        // any IServiceProvider or the ConfigureContainer method
+        // won't get called. Don't create a ContainerBuilder
+        // for Autofac here, and don't call builder.Populate() - that
+        // happens in the AutofacServiceProviderFactory for you.
 
+        services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(
+        Configuration.GetConnectionString("HotelConnection")));
+
+        services.AddMvc();
+        //services.AddScoped<ServiceModule>();
+        //services.AddScoped<IGuestService, GuestService>();
+        services.AddControllers();
+
+        services.AddSwaggerGen();
+
+        services.AddOptions();
     }
+
+    // ConfigureContainer is where you can register things directly
+    // with Autofac. This runs after ConfigureServices so the things
+    // here will override registrations made in ConfigureServices.
+    // Don't build the container; that gets done for you by the factory.
     public void ConfigureContainer(ContainerBuilder builder)
     {
-        try
-        {
-            builder.RegisterType<DatabaseContext>().InstancePerDependency().ExternallyOwned();
-            //builder.RegisterType<ReadonlyDatabaseContext>().InstancePerDependency().ExternallyOwned();
-            builder.RegisterModule<ServiceModule>();
-            var config = new ConfigurationBuilder();
-            config.AddJsonFile("autofac.json", true);
-            //var configurationModule = new Autofac.Configuration.ConfigurationModule(config.Build());
-            //builder.RegisterModule(configurationModule);
-        }
-        catch (Exception e)
-        {
-            logger.Fatal(e, "ConfigureContainer");
-            throw;
-        }
+        // Register your own things directly with Autofac here. Don't
+        // call builder.Populate(), that happens in AutofacServiceProviderFactory
+        // for you.
+        
+        builder.RegisterModule(new ServiceModule());
+
+        //builder.Register(x =>
+        //{
+        //    var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+        //    optionsBuilder.UseSqlServer(Configuration.GetConnectionString("HotelConnection"));
+        //    return new DatabaseContext(optionsBuilder.Options);
+        //}).InstancePerLifetimeScope();
     }
-    private static void ConfigureForwardedHeaders(IServiceCollection services)
+
+    // Configure is where you add middleware. This is called after
+    // ConfigureContainer. You can use IApplicationBuilder.ApplicationServices
+    // here if you need to resolve things from the container.
+    public void Configure(
+      IApplicationBuilder app,
+      ILoggerFactory loggerFactory)
     {
-        services.Configure<ForwardedHeadersOptions>(options =>
+        // If, for some reason, you need a reference to the built container, you
+        // can use the convenience extension method GetAutofacRoot.
+        this.AutofacContainer = app.ApplicationServices.GetAutofacRoot();
+
+        //loggerFactory.AddConsole(this.Configuration.GetSection("Logging"));
+        //loggerFactory.AddDebug();
+        app.UseSwagger();
+        // middleware do swagger-ui (HTML, JS, CSS, etc.),
+        // tutaj określasz endpoint dla Swagger JSON
+        app.UseSwaggerUI();
+        //app.UseMvc();
+        app.UseStaticFiles();
+        app.UseRouting();
+        app.UseAuthentication();
+        app.UseAuthorization();
+        app.UseCors();
+
+        app.UseEndpoints(endpoints =>
         {
-            options.ForwardedHeaders =
-                ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+            endpoints.MapControllers();
         });
-    }
-    private static void ConfigureOpenApi(IApplicationBuilder app)
-    {
-        //app.UseOpenApi();
-        //app.UseSwaggerUi3();
+
     }
 }
-
