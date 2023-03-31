@@ -27,6 +27,7 @@ bld/
 [Oo]bj/
 obj/
 obj\
+*/*/obj
 bin
 [Ll]og/
 
@@ -351,3 +352,4 @@ healthchecksdb
 
 #appsettings.Development.json
 AppZJOHotel.Services/obj/Debug/net6.0/AppZJOHotel.Services.csproj.FileListAbsolute.txt
+AppZJOHotel.DAL/obj/Debug/net6.0/AppZJOHotel.DAL.csproj.FileListAbsolute.txt
