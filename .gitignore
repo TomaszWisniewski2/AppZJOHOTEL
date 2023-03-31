@@ -25,7 +25,7 @@ x86/
 bld/
 [Bb]in/
 [Oo]bj/
-obj
+obj/
 bin
 [Ll]og/
 
@@ -348,3 +348,4 @@ healthchecksdb
 #AppZJOHOTEL/AppZJOHOTEL.WebAPI/Properties/launchSettings.json
 
 #appsettings.Development.json
+AppZJOHotel.Services/obj/Debug/net6.0/AppZJOHotel.Services.csproj.FileListAbsolute.txt
