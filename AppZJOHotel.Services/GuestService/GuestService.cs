@@ -20,7 +20,7 @@ public class GuestService : IGuestService
     public async Task<List<GuestDTO?>> ListGuests()
     {
         using var ctx = context();
-        var q = ctx.Guest.AsQueryable().AsNoTracking().Where(x => x.Id > 2);
+        var q = ctx.Guest.AsQueryable().AsNoTracking();
         var result = await q.Select(GuestListDTOExpression).ToListAsync();
 
         return result;
