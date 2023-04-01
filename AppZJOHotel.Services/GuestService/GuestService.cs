@@ -58,6 +58,7 @@ public class GuestService : IGuestService
         guest.Name = dto.Name ?? guest.Name;
         guest.Email = dto.Email ?? guest.Email;
         guest.Password = dto.Password ?? guest.Password;
+        guest.Surname = dto.Surname ?? guest.Surname;
 
     }
     // to niżej ma być na dole
@@ -67,7 +68,8 @@ public class GuestService : IGuestService
         Id = x.Id,
         Email = x.Email,
         Password = x.Password,
-        Surname = x.Surname
+        Surname = x.Surname,
+        Name = x.Name
     };
 
     internal static readonly Expression<Func<Guest, GuestDTO?>> GuestAddEditDTOExpression = x => new GuestDTO()
@@ -75,7 +77,8 @@ public class GuestService : IGuestService
         Id = x.Id,
         Email = x.Email,
         Password = x.Password,
-        Surname = x.Surname
+        Surname = x.Surname,
+        Name = x.Name
     };
     #endregion
 }

@@ -15,13 +15,13 @@ namespace AppZJOHotel.WEBAPI.Controllers
         {
             this.guestService = guestService;
         }
-        [HttpGet]
+        [HttpGet("List")]
         public Task<List<GuestDTO?>> List() => guestService.ListGuests();
 
-        [HttpPost]
+        [HttpPost("Register")]
         public Task<GuestDTO> Register([FromBody] GuestDTO guestDTO) => guestService.RegisterGuest(guestDTO);
 
-        [HttpPut]
+        [HttpPut("EditGuest")]
         public Task<GuestDTO?> EditGuest([FromBody] GuestDTO guestDTO) => guestService.EditGuest(guestDTO);
     }
 }
