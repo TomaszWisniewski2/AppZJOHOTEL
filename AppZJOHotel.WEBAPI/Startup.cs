@@ -40,6 +40,7 @@ public class Startup
         services.AddControllers();
 
         services.AddSwaggerGen();
+        services.AddSwaggerDocument();
 
         services.AddOptions();
     }
@@ -77,10 +78,13 @@ public class Startup
 
         //loggerFactory.AddConsole(this.Configuration.GetSection("Logging"));
         //loggerFactory.AddDebug();
-        app.UseSwagger();
+        //Microsoft.AspNetCore.Builder.SwaggerBuilderExtensions.UseSwagger(app, opt => opt.SwaggerDoc("v1", new Swashbuckle.AspNetCore.OpenApiInfo { Title = "My API", Version = "v1" }));
+        //app.UseSwagger();
         // middleware do swagger-ui (HTML, JS, CSS, etc.),
         // tutaj określasz endpoint dla Swagger JSON
-        app.UseSwaggerUI();
+        //app.UseSwaggerUI();
+        app.UseOpenApi();
+        app.UseSwaggerUi3();
         //app.UseMvc();
         app.UseStaticFiles();
         app.UseRouting();

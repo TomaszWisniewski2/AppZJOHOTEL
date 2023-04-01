@@ -8,6 +8,13 @@
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>
   </PropertyGroup>
+	<!--<PropertyGroup>
+		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+	</PropertyGroup>
+
+	<Target Name="NSwag" AfterTargets="PostBuildEvent" Condition=" '$(Configuration)' == 'Debug' ">
+		<Exec WorkingDirectory="$(ProjectDir)" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(NSwagExe_Net50) run nswag.json /variables:Configuration=$(Configuration)" />
+	</Target>-->
 
   <!--<ItemGroup>
     <Content Remove="nlog.config" />
@@ -28,6 +35,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.2" />
+    <PackageReference Include="NJsonSchema" Version="10.8.0" />
+    <PackageReference Include="NSwag.AspNetCore" Version="13.18.2" />
+    <PackageReference Include="NSwag.MSBuild" Version="13.18.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
@@ -37,5 +50,12 @@
     <ProjectReference Include="..\AppZJOHotel.Services\AppZJOHotel.Services.csproj" />
     <ProjectReference Include="..\AppZJOHotel.Types\AppZJOHotel.Types.csproj" />
   </ItemGroup>
+	<ItemGroup>
+		<Folder Include="tsclient\" />
+	</ItemGroup>
+
+	<!--<Target Name="NSwag" AfterTargets="Build">
+		<Exec Command="$(NSwagExe_Net60) run nswag.json /variables:Configuration=$(Configuration)" />
+	</Target>-->
 
 </Project>
