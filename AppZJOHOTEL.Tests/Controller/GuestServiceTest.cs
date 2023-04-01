@@ -53,38 +53,7 @@ namespace AppZJOHOTEL.Tests.Controller
             Assert.Equal("Password2", result[1].Password);
             Assert.Equal("Surname3", result[2].Surname);
         }
-
-        //[Fact]
-        //public async void RegisterGuest_ShouldReturnGuestDTO()
-        //{
-        //    // Arrange
-        //    var options = new DbContextOptionsBuilder<DatabaseContext>()
-        //        .UseInMemoryDatabase(databaseName: "RegisterGuest_ShouldReturnGuestDTO")
-        //        .Options;
-
-        //    var guestData = new GuestDTO
-        //    {
-        //        Name = "John Doe",
-        //        Email = "qwe",
-        //        Password = "qwe",
-        //        Surname = "qawe",
-
-        //    };
-
-        //    // Act
-        //    using (var context = new DatabaseContext(options))
-        //    {
-        //        var fakeContext = new Func<DatabaseContext>(() => context);
-        //        var guestService = new GuestService(fakeContext);
-        //        var result = await guestService.RegisterGuest(guestData);
-        //    }
-
-        //    // Assert
-        //    using (var context = new DatabaseContext(options))
-        //    {
-        //        Assert.NotNull(context.Guest.Find(guestData.Name));
-        //    }
-        //}
+       
         [Fact]
         public async void RegisterGuest_Returns_Expected_GuestDTO()
         {
@@ -116,5 +85,47 @@ namespace AppZJOHOTEL.Tests.Controller
             Assert.Equal(guestDTO.Email, result.Email);
             Assert.Equal(guestDTO.Password, result.Password);
         }
+
+
+        [Fact]
+        public void EditGuest_GivenId_ShouldReturnCorrectDTO()
+        {
+            // Arrange
+            var options = new DbContextOptionsBuilder<DatabaseContext>()
+                .UseInMemoryDatabase("EditGuest_GivenId_ShouldReturnCorrectDTO")
+                .Options;
+
+            using var context = new DatabaseContext(options);
+            context.Guest.Add(new Guest
+            {
+                Id = 1,
+                Name = "John",
+                Surname = "Doe",
+                Email = "john@doe.com",
+                Password = "password"
+            });
+            context.SaveChanges();
+            Func<DatabaseContext> contextFunc = () => context;
+            GuestService guestService = new GuestService(contextFunc);
+            GuestDTO guestDto = new GuestDTO
+            {
+                Id = 1,
+                Name = "John1",
+                Surname = "Doe",
+                Email = "john@doe.com",
+                Password = "newpassword"
+            };
+
+            // Act
+            var result = guestService.EditGuest(guestDto).Result;
+
+            // Assert
+            Assert.Equal(1, result?.Id);
+            Assert.Equal(guestDto.Name, result?.Name);
+            Assert.Equal("Doe", result?.Surname);
+            Assert.Equal("john@doe.com", result?.Email);
+            Assert.Equal("newpassword", result?.Password);
+        }
+
     }
 }
