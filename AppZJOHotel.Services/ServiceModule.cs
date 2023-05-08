@@ -14,7 +14,7 @@ namespace AppZJOHotel.Services
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<GuestService.GuestService>().As<IGuestService>();
-            //builder.RegisterType<AdminService.AdminService>().As<IAdminService>();
+            builder.RegisterType<AdminService.AdminService>().As<IAdminService>();
         }
     }
 }

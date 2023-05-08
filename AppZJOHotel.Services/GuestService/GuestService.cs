@@ -16,7 +16,10 @@ public class GuestService : IGuestService
 
         this.context = context;
     }
+    //public async Task<GuestDTO> Booking(GuestDTO guestDTO)
+    //{
 
+    //}
     public async Task<int> Login(LoginDTO dto)
     {
         using var ctx = context();

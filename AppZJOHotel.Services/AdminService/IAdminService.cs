@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace AppZJOHotel.Services.AdminService
 {
-    internal interface IAdminService
+    public interface IAdminService
     {
-        Task<GuestDTO> AddRoom(GuestDTO guest);
-        Task<GuestDTO?> DeleteRoom(GuestDTO dto);
-        Task<GuestDTO> EditRoom(GuestDTO guest);
-        Task<GuestDTO?> EditBooking(GuestDTO dto);
-        Task<GuestDTO> GetRoomList(GuestDTO guest);
-        Task<GuestDTO?> GetGuestList(GuestDTO dto);
+        Task<RoomDTO> AddRoom(RoomDTO dto);
+        //Task<GuestDTO?> DeleteRoom(GuestDTO dto);
+        Task<RoomTypeDTO> AddRoomType(RoomTypeDTO dto);
+        //Task<GuestDTO> EditRoom(GuestDTO guest);
+        //Task<GuestDTO?> EditBooking(GuestDTO dto);
+        //Task<GuestDTO> GetRoomList(GuestDTO guest);
+        //Task<GuestDTO?> GetGuestList(GuestDTO dto);
     }
 }
