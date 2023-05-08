@@ -9,11 +9,10 @@ using System.Reflection;
 
 public class Startup
 {
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     public Startup(IConfiguration configuration)
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     {
-        // In ASP.NET Core 3.x, using `Host.CreateDefaultBuilder` (as in the preceding Program.cs snippet) will
-        // set up some configuration for you based on your appsettings.json and environment variables. See "Remarks" at
-        // https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.host.createdefaultbuilder for details.
         this.Configuration = configuration;
     }
 
@@ -25,11 +24,6 @@ public class Startup
     // called by the runtime before the ConfigureContainer method, below.
     public void ConfigureServices(IServiceCollection services)
     {
-        // Add services to the collection. Don't build or return
-        // any IServiceProvider or the ConfigureContainer method
-        // won't get called. Don't create a ContainerBuilder
-        // for Autofac here, and don't call builder.Populate() - that
-        // happens in the AutofacServiceProviderFactory for you.
 
         services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(
         Configuration.GetConnectionString("HotelConnection")));
@@ -39,9 +33,10 @@ public class Startup
         //services.AddScoped<IGuestService, GuestService>();
         services.AddControllers();
 
-        services.AddSwaggerGen();
-        services.AddSwaggerDocument();
-
+        //services.AddSwaggerGen();
+        //services.AddSwaggerDocument();
+        services.AddOpenApiDocument(document => document.DocumentName = "a");
+        //services.AddSwaggerDocument(document => document.DocumentName = "b");
         services.AddOptions();
     }
 
@@ -83,19 +78,20 @@ public class Startup
         // middleware do swagger-ui (HTML, JS, CSS, etc.),
         // tutaj określasz endpoint dla Swagger JSON
         //app.UseSwaggerUI();
+        //app.UseMvc();
         app.UseOpenApi();
         app.UseSwaggerUi3();
         //app.UseMvc();
-        app.UseStaticFiles();
+        //app.UseStaticFiles();
         app.UseRouting();
-        app.UseAuthentication();
-        app.UseAuthorization();
-        app.UseCors();
+        //app.UseAuthentication();
+        //app.UseAuthorization();
+        
 
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
         });
-
+        app.UseCors();
     }
 }
