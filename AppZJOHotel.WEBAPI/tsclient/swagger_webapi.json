@@ -1,0 +1,170 @@
+{
+  "x-generator": "NSwag v13.19.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v10.0.0.0))",
+  "swagger": "2.0",
+  "info": {
+    "title": "webapi API",
+    "description": "Interfejs webapi",
+    "version": "1.0.0.0"
+  },
+  "produces": [
+    "text/plain",
+    "application/json",
+    "text/json"
+  ],
+  "paths": {
+    "/api/Guest/List": {
+      "get": {
+        "tags": [
+          "Guest"
+        ],
+        "operationId": "Guest_List",
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GuestDTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Guest/Register": {
+      "post": {
+        "tags": [
+          "Guest"
+        ],
+        "operationId": "Guest_Register",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "name": "guestDTO",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GuestDTO"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/GuestDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/Guest/EditGuest": {
+      "put": {
+        "tags": [
+          "Guest"
+        ],
+        "operationId": "Guest_EditGuest",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "name": "guestDTO",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GuestDTO"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/GuestDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/Guest/Login": {
+      "put": {
+        "tags": [
+          "Guest"
+        ],
+        "operationId": "Guest_Login",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "name": "dto",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoginDTO"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "GuestDTO": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "surname": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "LoginDTO": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

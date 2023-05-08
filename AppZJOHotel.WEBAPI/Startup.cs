@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 using AppZJOHotel.WEBAPI.Db_Access;
 using System.Reflection;
+using NSwag.Generation.AspNetCore;
 
 public class Startup
 {
@@ -22,6 +23,9 @@ public class Startup
 
     // ConfigureServices is where you register dependencies. This gets
     // called by the runtime before the ConfigureContainer method, below.
+#pragma warning disable CS8601 // Possible null reference assignment.
+    static readonly Version version = typeof(Startup).Assembly.GetName().Version;
+#pragma warning restore CS8601 // Possible null reference assignment.
     public void ConfigureServices(IServiceCollection services)
     {
 
@@ -36,8 +40,36 @@ public class Startup
         //services.AddSwaggerGen();
         //services.AddSwaggerDocument();
         services.AddOpenApiDocument(document => document.DocumentName = "a");
+
+        const string AdminNameSpace = "AppZJOHotel.WEBAPI.Controllers";
+
+        services.AddSwaggerDocument(document =>
+        {
+            document.DocumentName = "webapi_swagger";
+            document.Title = "webapi API";
+            document.Description = "Interfejs webapi";
+            ApplyDefaults(document);
+            document.AddOperationFilter(opc => opc.ControllerType.Namespace == AdminNameSpace);
+        });
+
+        services.AddOpenApiDocument(document =>
+        {
+            document.DocumentName = "webapi_openapi";
+            document.Title = "webapi API";
+            document.Description = "Interfejs webapi";
+            ApplyDefaults(document);
+            document.AddOperationFilter(opc => opc.ControllerType.Namespace == AdminNameSpace);
+        });
+
+
         //services.AddSwaggerDocument(document => document.DocumentName = "b");
         services.AddOptions();
+    }
+    private static void ApplyDefaults(AspNetCoreOpenApiDocumentGeneratorSettings document)
+    {
+
+        document.Version = version.ToString();
+        document.GenerateEnumMappingDescription = true;
     }
 
     // ConfigureContainer is where you can register things directly

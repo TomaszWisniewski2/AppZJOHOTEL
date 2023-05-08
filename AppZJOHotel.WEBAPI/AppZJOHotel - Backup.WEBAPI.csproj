@@ -45,12 +45,22 @@
     <ProjectReference Include="..\AppZJOHotel.Services\AppZJOHotel.Services.csproj" />
     <ProjectReference Include="..\AppZJOHotel.Types\AppZJOHotel.Types.csproj" />
   </ItemGroup>
+	<ItemGroup>
+		<Folder Include="tsclient\" />
+	</ItemGroup>
+	<!--<ItemGroup>
+	  --><!--<None Update="tsclient\ApiClient.ts">--><!--
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  --><!--</None>--><!--
+	</ItemGroup>-->
 
 	<PropertyGroup>
 		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
 	</PropertyGroup>
 
-	<Target Name="NSwag" AfterTargets="PostBuildEvent" Condition=" '$(Configuration)' == 'Debug' ">
-		<Exec WorkingDirectory="$(ProjectDir)" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(NSwagExe_Net60) run webapi.nswag /variables:Configuration=$(Configuration)" />
+	<Target Name="NSwag" AfterTargets="Build" Condition=" '$(Configuration)' == 'Debug' ">
+		<Copy SourceFiles="@(ReferencePath)" DestinationFolder="$(OutDir)References" />
+		<Exec Command="$(NSwagExe_Net60) run webapi.nswag /variables:Configuration=$(Configuration),OutDir=$(OutDir)" />
+		<RemoveDir Directories="$(OutDir)References" />
 	</Target>
 </Project>

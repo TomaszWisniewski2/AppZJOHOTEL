@@ -62,7 +62,6 @@ public class GuestService : IGuestService
     }
     private static void Update(Guest guest, GuestDTO dto)
     {
-        
         guest.Name = dto.Name ?? guest.Name;
         guest.Email = dto.Email ?? guest.Email;
         guest.Password = dto.Password ?? guest.Password;
