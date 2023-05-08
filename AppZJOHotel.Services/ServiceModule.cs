@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using AppZJOHotel.Services.GuestService;
+using AppZJOHotel.Services.AdminService;
 
 namespace AppZJOHotel.Services
 {
@@ -13,6 +14,7 @@ namespace AppZJOHotel.Services
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<GuestService.GuestService>().As<IGuestService>();
+            //builder.RegisterType<AdminService.AdminService>().As<IAdminService>();
         }
     }
 }

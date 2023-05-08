@@ -13,9 +13,17 @@ public class GuestService : IGuestService
 
     public GuestService(Func<DatabaseContext> context)
     {
+
         this.context = context;
     }
 
+    public int Login(LoginDTO dto)
+    {
+        using var ctx = context();
+        var q = ctx.Guest.Where(x => x.Email == dto.Email && x.Password == dto.Password);
+        var r = q.First();
+        return r.Id ;
+    }
 
     public async Task<List<GuestDTO?>> ListGuests()
     {
