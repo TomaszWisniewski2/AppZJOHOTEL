@@ -17,11 +17,11 @@ public class GuestService : IGuestService
         this.context = context;
     }
 
-    public int Login(LoginDTO dto)
+    public async Task<int> Login(LoginDTO dto)
     {
         using var ctx = context();
         var q = ctx.Guest.Where(x => x.Email == dto.Email && x.Password == dto.Password);
-        var r = q.First();
+        var r =await q.FirstAsync();
         return r.Id ;
     }
 

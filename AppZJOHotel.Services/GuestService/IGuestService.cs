@@ -11,7 +11,7 @@ namespace AppZJOHotel.Services.GuestService
         Task<List<GuestDTO?>> ListGuests();//do admina
         Task<GuestDTO> RegisterGuest(GuestDTO guest);
         Task<GuestDTO?> EditGuest(GuestDTO dto);
-        int Login(LoginDTO dto);
+        Task<int> Login(LoginDTO dto);
         //Task<GuestDTO> Bookink(GuestDTO guest);
         //Task<GuestDTO> EditBookink(GuestDTO guest);
         //Task<GuestDTO> BookinkInfo(GuestDTO guest);//informacje o rezerwacji

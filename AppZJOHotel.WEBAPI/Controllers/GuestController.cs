@@ -25,6 +25,6 @@ namespace AppZJOHotel.WEBAPI.Controllers
         public Task<GuestDTO?> EditGuest([FromBody] GuestDTO guestDTO) => guestService.EditGuest(guestDTO);
 
         [HttpPut("Login")]
-        public int Login([FromBody] LoginDTO dto) => guestService.Login(dto);
+        public Task<int> Login([FromBody] LoginDTO dto) => guestService.Login(dto);
     }
 }
