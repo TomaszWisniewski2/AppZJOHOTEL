@@ -10,11 +10,11 @@ namespace AppZJOHotel.Services.AdminService
     public interface IAdminService
     {
         Task<RoomDTO> AddRoom(RoomDTO dto);
-        //Task<GuestDTO?> DeleteRoom(GuestDTO dto);
+        Task<string> DeleteRoom(RoomDTO dto);
         Task<RoomTypeDTO> AddRoomType(RoomTypeDTO dto);
-        //Task<GuestDTO> EditRoom(GuestDTO guest);
+        Task<RoomDTO?> EditRoom(RoomDTO dto);
         //Task<GuestDTO?> EditBooking(GuestDTO dto);
-        //Task<GuestDTO> GetRoomList(GuestDTO guest);
-        //Task<GuestDTO?> GetGuestList(GuestDTO dto);
+        Task<List<RoomDTO?>> ListRooms();
+        Task<List<GuestDTO?>> ListGuests();
     }
 }

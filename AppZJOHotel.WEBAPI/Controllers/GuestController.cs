@@ -1,4 +1,5 @@
 ﻿using AppZJOHotel.DAL.Entities;
+using AppZJOHotel.Services.AdminService;
 using AppZJOHotel.Services.GuestService;
 using AppZJOHotel.Types;
 using Microsoft.AspNetCore.Mvc;
@@ -26,5 +27,8 @@ namespace AppZJOHotel.WEBAPI.Controllers
 
         [HttpPut("Login")]
         public Task<int> Login([FromBody] LoginDTO dto) => guestService.Login(dto);
+
+        public Task<List<RoomDTO?>> ListRooms() => guestService.ListRooms();
+
     }
 }

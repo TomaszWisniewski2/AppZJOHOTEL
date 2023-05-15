@@ -8,7 +8,7 @@ namespace AppZJOHotel.Services.AdminService
 {
     public class RoomDTO
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public int RoomNumber { get; set; }
         public float RoomPrice { get; set; }
         public int RoomCapacity { get; set; }

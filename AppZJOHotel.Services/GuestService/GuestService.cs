@@ -1,5 +1,6 @@
 ﻿using AppZJOHotel.DAL;
 using AppZJOHotel.DAL.Entities;
+using AppZJOHotel.Services.AdminService;
 using AppZJOHotel.WEBAPI.Db_Access;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,14 @@ public class GuestService : IGuestService
     //{
 
     //}
+    public async Task<List<RoomDTO?>> ListRooms()
+    {
+        using var ctx = context();
+        var q = ctx.Room.AsQueryable().AsNoTracking();
+        var result = await q.Select(RoomListDTOExpression).ToListAsync();
+
+        return result;
+    }
     public async Task<int> Login(LoginDTO dto)
     {
         using var ctx = context();
@@ -89,6 +98,16 @@ public class GuestService : IGuestService
         Password = x.Password,
         Surname = x.Surname,
         Name = x.Name
+    };
+    internal static readonly Expression<Func<Room, RoomDTO?>> RoomListDTOExpression = x => new RoomDTO()
+    {
+        Id = x.Id,
+        RoomNumber = x.RoomNumber,
+        RoomPrice = x.RoomPrice,
+        RoomCapacity = x.RoomCapacity,
+        RoomPhoto = x.RoomPhoto,
+        RoomStatus = x.RoomStatus,
+        RoomTypeId = x.RoomTypeId
     };
     #endregion
 }
