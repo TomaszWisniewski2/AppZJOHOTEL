@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 
 namespace AppZJOHotel.Services.GuestService
 {
-    public class BookingDTO
+    public class EditBookingDTO
     {
-       // public int? Id { get; set; }
-        public int? GuestId { get; set; }
+        public int? Id { get; set; }
+        //public int? GuestId { get; set; }
         public int? RoomId { get; set; }
         //public int RoomNr { get; set; }
         public DateTime? BookingFrom { get; set; }
         public DateTime? BookingTo { get; set; }
-
-
     }
 }

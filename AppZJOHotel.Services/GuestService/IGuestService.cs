@@ -14,10 +14,11 @@ namespace AppZJOHotel.Services.GuestService
         Task<GuestDTO?> EditGuest(GuestDTO dto);
         Task<int> Login(LoginDTO dto);
         Task<List<RoomDTO?>> ListRooms();
-        //Task<GuestDTO> Bookink(GuestDTO guest);
-        //Task<GuestDTO> EditBookink(GuestDTO guest);
-        //Task<GuestDTO> BookinkInfo(int i);//informacje o rezerwacji
-        //Task<GuestDTO> Payment(GuestDTO guest);
+        Task<BookingDTO> BookinkRoom(BookingDTO dto);
+        Task<EditBookingDTO> EditBookink(EditBookingDTO dto);
+        Task<string> DeleteBooking(int id);
+        Task<BookingDTO?> GetBooking(int id);//informacje o rezerwacji
+        Task<String> Payment(int enu, int id);
 
 
 

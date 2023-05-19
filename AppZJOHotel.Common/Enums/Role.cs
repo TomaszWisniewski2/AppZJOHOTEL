@@ -3,7 +3,7 @@ namespace AppZJOHotel.Common.Enums
 {
     public enum Role
     {
-        Guest,
-        Admin
+        Guest,//0
+        Admin//1
     }
 }

@@ -28,7 +28,22 @@ namespace AppZJOHotel.WEBAPI.Controllers
         [HttpPut("Login")]
         public Task<int> Login([FromBody] LoginDTO dto) => guestService.Login(dto);
 
+        [HttpGet("ListRooms")]
         public Task<List<RoomDTO?>> ListRooms() => guestService.ListRooms();
 
+        [HttpPost("Booking")]
+        public Task<BookingDTO> BookinkRoom([FromBody] BookingDTO dto) => guestService.BookinkRoom(dto);
+
+        [HttpPut("EditBookink")]
+        public Task<EditBookingDTO> EditBookink([FromBody] EditBookingDTO dto) => guestService.EditBookink(dto);
+        
+        [HttpPost("DeleteBooking")]
+        public Task<string> DeleteBooking(int id)=> guestService.DeleteBooking(id);
+
+        [HttpGet("GetBooking")]
+        public Task<BookingDTO?> GetBooking(int id) => guestService.GetBooking(id);
+
+        [HttpPost("Payment")]
+        public Task<String> Payment(int enu, int id) => guestService.Payment(enu, id);
     }
 }

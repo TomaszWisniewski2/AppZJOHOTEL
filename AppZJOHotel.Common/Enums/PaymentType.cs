@@ -2,7 +2,8 @@
 {
     public enum PaymentType
     {
-        Blick,
+        None,//0
+        Blick,//1
         Cash,
         PayU,
         PayPal,

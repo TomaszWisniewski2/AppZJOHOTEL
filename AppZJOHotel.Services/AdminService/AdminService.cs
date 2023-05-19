@@ -22,7 +22,17 @@ namespace AppZJOHotel.Services.AdminService
         {
             this.context = context;
         }
-
+        public async Task<RoomDTO?> GetRoom(int id)
+        {
+            using var ctx = context();
+            if (id == 0)
+                return null;
+            Room? room = await ctx.Room.FindAsync(id);
+            if (room == null) return null;
+#pragma warning disable CS8603 // Possible null reference return.
+            return RoomAddEditDTOExpression.Invoke(room);
+#pragma warning disable CS8603 // Possible null reference return.
+        }
         public async Task<List<RoomDTO?>> ListRooms()
         {
             using var ctx = context();

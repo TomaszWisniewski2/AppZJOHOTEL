@@ -27,5 +27,7 @@ namespace AppZJOHotel.WEBAPI.Controllers
         public  Task<List<RoomDTO?>> ListRooms()=> adminService.ListRooms();
         [HttpGet("ListGuests")]
         public  Task<List<GuestDTO?>> ListGuests()=> adminService.ListGuests();
+        [HttpGet("GetRoom")]
+        public Task<RoomDTO?> GetRoom(int id)=> adminService.GetRoom(id);
     }
 }
