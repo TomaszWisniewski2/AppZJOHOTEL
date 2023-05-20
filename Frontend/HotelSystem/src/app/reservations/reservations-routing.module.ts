@@ -4,7 +4,8 @@ import { NgModule } from "@angular/core";
 
 const routes: Routes = [
     { path: '', redirectTo: 'list', pathMatch: 'full' },
-    { path: 'list', component: ReservationListComponent }
+    { path: 'list', component: ReservationListComponent },
+    { path: '**', redirectTo: 'list' }
 
 ];
 
