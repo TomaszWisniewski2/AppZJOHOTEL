@@ -18,31 +18,22 @@ namespace AppZJOHotel.WEBAPI.Controllers
         }
         [HttpGet("List")]
         public Task<List<GuestDTO?>> List() => guestService.ListGuests();
-
         [HttpPost("Register")]
         public Task<GuestDTO> Register([FromBody] GuestDTO guestDTO) => guestService.RegisterGuest(guestDTO);
-
         [HttpPut("EditGuest")]
         public Task<GuestDTO?> EditGuest([FromBody] GuestDTO guestDTO) => guestService.EditGuest(guestDTO);
-
         [HttpPut("Login")]
         public Task<int> Login([FromBody] LoginDTO dto) => guestService.Login(dto);
-
         [HttpGet("ListRooms")]
         public Task<List<RoomDTO?>> ListRooms() => guestService.ListRooms();
-
         [HttpPost("Booking")]
-        public Task<BookingDTO> BookinkRoom([FromBody] BookingDTO dto) => guestService.BookinkRoom(dto);
-
+        public Task<BookingDTO> BookingRoom([FromBody] BookingDTO dto) => guestService.BookingRoom(dto);
         [HttpPut("EditBookink")]
-        public Task<EditBookingDTO> EditBookink([FromBody] EditBookingDTO dto) => guestService.EditBookink(dto);
-        
+        public Task<EditBookingDTO> EditBooking([FromBody] EditBookingDTO dto) => guestService.EditBooking(dto);
         [HttpPost("DeleteBooking")]
         public Task<string> DeleteBooking(int id)=> guestService.DeleteBooking(id);
-
         [HttpGet("GetBooking")]
         public Task<BookingDTO?> GetBooking(int id) => guestService.GetBooking(id);
-
         [HttpPost("Payment")]
         public Task<String> Payment(int enu, int id) => guestService.Payment(enu, id);
     }

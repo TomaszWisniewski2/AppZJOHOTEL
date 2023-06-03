@@ -13,10 +13,8 @@ namespace AppZJOHotel.Services.AdminService
         Task<string> DeleteRoom(RoomDTO dto);
         Task<RoomTypeDTO> AddRoomType(RoomTypeDTO dto);
         Task<RoomDTO?> EditRoom(RoomDTO dto);
-        //Task<RoomDTO?> EditBooking(RoomDTO dto);
         Task<List<RoomDTO?>> ListRooms();
         Task<List<GuestDTO?>> ListGuests();
-        //getBooking 
         Task<RoomDTO?> GetRoom(int id);
     }
 }

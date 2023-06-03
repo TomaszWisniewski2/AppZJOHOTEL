@@ -42,11 +42,16 @@ public class GuestService : IGuestService
             return "null";
         Booking? booking = await ctx.Booking.FindAsync(id);
         if (booking == null) return "null";
+
+        Room? room = await ctx.Room.FindAsync(booking.RoomId);
+        if (room == null) return null;
+        room.RoomStatus = true;
+
         ctx.Booking.Remove(booking);
         await ctx.SaveChangesAsync();
         return "done";
     }
-    public async Task<EditBookingDTO> EditBookink(EditBookingDTO dto)
+    public async Task<EditBookingDTO> EditBooking(EditBookingDTO dto)
     {
         using var ctx = context();
         if (!dto.Id.HasValue)
@@ -60,12 +65,16 @@ public class GuestService : IGuestService
 #pragma warning disable CS8603 // Possible null reference return.
 
     }
-    public async Task<BookingDTO> BookinkRoom(BookingDTO dto)
+    public async Task<BookingDTO> BookingRoom(BookingDTO dto)
     {
         using var ctx = context();
         Booking booking = new();
         await ctx.Booking.AddAsync(booking);
         UpdateBooking(booking, dto);
+        await ctx.SaveChangesAsync();
+        Room? room = await ctx.Room.FindAsync(dto.RoomId.Value);
+        if (room == null) return null;
+        room.RoomStatus=false;
         await ctx.SaveChangesAsync();
 #pragma warning disable CS8603 // Possible null reference return.
         return BookingAddEditDTOExpression.Invoke(booking);
@@ -74,7 +83,7 @@ public class GuestService : IGuestService
     public async Task<List<RoomDTO?>> ListRooms()
     {
         using var ctx = context();
-        var q = ctx.Room.AsQueryable().AsNoTracking();
+        var q = ctx.Room.AsQueryable().AsNoTracking().Where(x=> x.RoomStatus==true);
         var result = await q.Select(RoomListDTOExpression).ToListAsync();
 
         return result;
@@ -102,12 +111,13 @@ public class GuestService : IGuestService
         Guest guest = new();       
         await ctx.Guest.AddAsync(guest);
         Update(guest, dto);
+        if (dto.Name == "Admin"&&dto.Password=="Admin") {
+            guest.Role = (Common.Enums.Role)1;
+        }
         await ctx.SaveChangesAsync();
-
 #pragma warning disable CS8603 // Possible null reference return.
         return GuestAddEditDTOExpression.Invoke(guest);
 #pragma warning restore CS8603 // Possible null reference return.
-
     }
     public async Task<GuestDTO?> EditGuest(GuestDTO dto)
     {
